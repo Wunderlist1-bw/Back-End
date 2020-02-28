@@ -3,7 +3,7 @@ const secrets = require('../config/secrets.js');
 
 module.exports = (req, res, next) => {
 
-    const token = req.headers.bananaAuth;
+    const token = req.headers.authorization;
 
     if (token) {
         jwt.verify(token, secrets.jwtSecrets, (err, decodedToken) => {

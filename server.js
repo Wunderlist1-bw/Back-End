@@ -15,8 +15,12 @@ server.use(middleware);
 server.use('/api/auth', authRouter);
 server.use('/api/task', taskRouter);
 
-server.get('/', (req, res) => {
-    res.send("It's Alive");
+// server.get('/', (req, res) => {
+//     res.send("It's Alive");
+// })
+
+server.get('/', function (req, res, next) {
+    res.json({ msg: 'This is CORS-enabled for all origins!' })
 })
 
 module.exports = server;
