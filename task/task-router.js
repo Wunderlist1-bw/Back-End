@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Task = require('./task-model.js');
+const TaskAuth = require('../auth/authenticate-middleware.js');
 
 
 
@@ -9,7 +10,7 @@ const Task = require('./task-model.js');
 // GET ALL TASK
 // ______________________ //
 
-router.get('/', (req, res) => {
+router.get('/', TaskAuth, (req, res) => {
     Task.find()
         .then(tasks => {
             res.status(200).json(tasks);
@@ -59,7 +60,7 @@ router.post('/', (req, res) => {
 
 
 // ______________________ //
-// EDIT TASK
+// EDIT TASK (NEEDS TO BE FIXED)
 // ______________________ //
 
 router.put('/:id', (req, res) => {

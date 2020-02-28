@@ -34,7 +34,7 @@ async function add(task) {
 function update(banana, id) {
     return db('task')
         .where({ id })
-        .insert(banana)
+        .update(banana, '*')
         .then(id => {
             return findById(id)
         })
