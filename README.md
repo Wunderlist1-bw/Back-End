@@ -16,8 +16,8 @@ Section Contents:
 Expects an object with this format as the request body:
 ```
 {
-  "email": "user1@gmail.com",   //string
-  "username": "User1",   //string
+  "email": "user1@gmail.com", //string
+  "username": "User1", //string
   "password": "password" //string
 }
 ```
