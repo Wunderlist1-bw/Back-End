@@ -32,7 +32,7 @@ Expects an object with this format as the request body:
 /api/task GET
 Requires an authorization header with a JWT. it will return an array of objects in this format:
 
-  "task": 
+  "task": [
             {
                 "id": 1,
                 "title": "Study for assessment",
@@ -55,7 +55,7 @@ Requires an authorization header with a JWT. it will return an array of objects 
                 "updated_at": "2020-02-28 03:17:24",
                 "users_id": 1
             }
-        
+        ]
 
 
 /api/task POST
