@@ -25,7 +25,7 @@ router.get('/', TaskAuth, (req, res) => {
 // GET TASK BY ID
 // ______________________ //
 
-router.get('/:id', (req, res) => {
+router.get('/:id', TaskAuth, (req, res) => {
     const { id } = req.params
 
     Task.findById(id)
@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 // ADD NEW TASK
 // ______________________ //
 
-router.post('/', (req, res) => {
+router.post('/', TaskAuth, (req, res) => {
     const newTask = req.body;
 
     Task.add(newTask)
@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
 // EDIT TASK (NEEDS TO BE FIXED)
 // ______________________ //
 
-router.put('/:id', (req, res) => {
+router.put('/:id', TaskAuth, (req, res) => {
     const { id } = req.params;
     const banana = req.body;
 
@@ -88,7 +88,7 @@ router.put('/:id', (req, res) => {
 // DELETE TASK
 // ______________________ //
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', TaskAuth, (req, res) => {
     const { id } = req.params;
 
     Task.remove(id)
