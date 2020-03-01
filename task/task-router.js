@@ -6,23 +6,42 @@ const TaskAuth = require('../auth/authenticate-middleware.js');
 
 
 
+
 // ______________________ //
 // GET ALL TASK
 // ______________________ //
 
+
 router.get('/', TaskAuth, (req, res) => {
+
     Task.find()
         .then(tasks => {
             res.status(200).json(tasks);
         })
         .catch(err => {
-            res.status(500).json({ message: 'users not found', err })
+            res.status(500).json({ message: 'task not found', err })
+        });
+})
+
+// ______________________ //
+// GET ALL TASK for specific Category
+// ______________________ //
+
+router.get('/category/:category_id', TaskAuth, (req, res) => {
+    const { category_id } = req.params
+
+    Task.findCategoryTasks(category_id)
+        .then(tasks => {
+            res.status(200).json(tasks);
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'task not found', err })
         });
 })
 
 
 // ______________________ //
-// GET TASK BY ID
+// GET TASK BY WITH CATEGORY
 // ______________________ //
 
 router.get('/:id', TaskAuth, (req, res) => {
@@ -31,7 +50,13 @@ router.get('/:id', TaskAuth, (req, res) => {
     Task.findById(id)
         .then(taskId => {
             if (taskId) {
-                res.status(200).json(taskId)
+                Task.findTaskCategories(id)
+                    .then(task => {
+                        res.status(200).json(task)
+                    })
+                    .catch(err => {
+                        res.status(500).json({ message: 'you failed to get all', err });
+                    });
             } else {
                 res.status(404).json({ message: 'could not find task' })
             }
@@ -52,6 +77,22 @@ router.post('/', TaskAuth, (req, res) => {
     Task.add(newTask)
         .then(NewTask => {
             res.status(201).json(NewTask)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to create new task', err })
+        });
+})
+
+// ______________________ //
+// ADD NEW Category
+// ______________________ //
+
+router.post('/', TaskAuth, (req, res) => {
+    const newCategory = req.body;
+
+    Task.addCategory(newCategory)
+        .then(NewCategory => {
+            res.status(201).json(NewCategory)
         })
         .catch(err => {
             res.status(500).json({ message: 'Failed to create new task', err })

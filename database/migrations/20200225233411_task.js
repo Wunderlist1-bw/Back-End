@@ -5,7 +5,6 @@ exports.up = function (knex) {
         task.string('title', 128).notNullable();
         task.string('description', 225).notNullable();
         task.string('completeDate');
-        task.string('category');
         task.boolean('complete').notNullable().defaultTo(false);
         task.timestamp('created_at').defaultTo(knex.fn.now());
         task.timestamp('updated_at').defaultTo(knex.fn.now());
@@ -17,8 +16,33 @@ exports.up = function (knex) {
             .onDelete('CASCADE');
     })
 
+        .createTable('category', catagory => {
+            catagory.increments();
+            catagory.string('category', 128).unique();
+        })
+
+        .createTable('task_category', tbl => {
+            tbl.integer('task_id')
+                .unsigned()
+                .notNullable()
+                .references('task.id')
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE');
+            tbl.integer('category_id')
+                .unsigned()
+                .notNullable()
+                .references('category.id')
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE');;
+            tbl.primary(['task_id', 'category_id'])
+
+        })
+
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('task')
+    return knex.schema
+        .dropTableIfExists('task_category')
+        .dropTableIfExists('category')
+        .dropTableIfExists('task')
 };
