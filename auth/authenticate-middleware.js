@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
                 res.status(401).json({ you: 'shall not pass!' });
             } else {
                 req.deodedJwt = decodedToken;
-                console.log(req.deodedJwt);
+                console.log("decoded token", req.deodedJwt);
                 next();
             }
         })
