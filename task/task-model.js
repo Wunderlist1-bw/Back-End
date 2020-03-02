@@ -2,6 +2,7 @@ const db = require('../database/dbconfig');
 
 module.exports = {
     find,
+    findCategories,
     findTaskCategories,
     findCategoryTasks,
     findById,
@@ -14,6 +15,10 @@ module.exports = {
 
 function find() {
     return db('task');
+}
+
+function findCategories() {
+    return db('category');
 }
 
 function findById(id) {

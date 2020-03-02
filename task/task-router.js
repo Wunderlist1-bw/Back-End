@@ -23,6 +23,17 @@ router.get('/', TaskAuth, (req, res) => {
         });
 })
 
+router.get('/category', TaskAuth, (req, res) => {
+
+    Task.findCategories()
+        .then(categories => {
+            res.status(200).json(categories);
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'categories not found', err })
+        });
+})
+
 // ______________________ //
 // GET ALL TASK for specific Category
 // ______________________ //
@@ -43,6 +54,36 @@ router.get('/category/:category_id', TaskAuth, (req, res) => {
 // ______________________ //
 // GET TASK BY WITH CATEGORY
 // ______________________ //
+
+// router.get('/:id', TaskAuth, (req, res) => {
+//     const { id } = req.params
+
+//     Task.findById(id)
+//         .then(idTasks => {
+//             if (idTasks) {
+//                 Task.findById(id)
+//                     .then(Tasks => {
+//                         res.status(200).json(Tasks)
+//                     })
+//                     .catch(err => {
+//                         res.status(500).json({ message: 'you failed to get all', err });
+//                     });
+//             } else {
+//                 if (taskId) {
+//                     Task.findTaskCategories(id)
+//                         .then(task => {
+//                             res.status(200).json(task)
+//                         })
+//                         .catch(err => {
+//                             res.status(500).json({ message: 'you failed to get all', err });
+//                         });
+//                 }
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json({ message: 'you failed to get the id', err });
+//         });
+// })
 
 router.get('/:id', TaskAuth, (req, res) => {
     const { id } = req.params
@@ -67,6 +108,23 @@ router.get('/:id', TaskAuth, (req, res) => {
 })
 
 
+// router.get('/:id', (req, res) => {
+//     const { id } = req.params;
+
+//     Task.findTaskCategories(id)
+//         .then(tasksId => {
+//             if (tasksId) {
+//                 res.json(tasksId);
+//             } else {
+//                 res.status(404).json({ message: 'Could not find tasks with given id.' })
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json({ message: 'Failed to get tasks', err });
+//         });
+// });
+
+
 // ______________________ //
 // ADD NEW TASK
 // ______________________ //
@@ -89,6 +147,7 @@ router.post('/', TaskAuth, (req, res) => {
 
 router.post('/category', TaskAuth, (req, res) => {
     const newCategory = req.body;
+    console.log(req.body);
 
     Task.addCategory(newCategory)
         .then(NewCategory => {
