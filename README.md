@@ -69,7 +69,6 @@ Requires an authorization header with a JWT. Expects an object with this format 
 
     "task": {
                 "id": 1,
-                "category": "school",
                 "title": "Study for assessment",
                 "description": "Read over notes and tk to get ready for assessment",
                 "completeDate": "03/01/2020",
