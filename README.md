@@ -120,17 +120,13 @@ Requires an authorization header with a JWT. Expects an object with this format 
                 "users_id": 1
             }
 ```
-### /api/task/category/:id GET
+### /api/task/category POST
 
 Requires an authorization header with a JWT. Expects an object with this format as the request body:
 ```
     "task": {
                 "id": 1,
-                "category": "home",
-                "title": "Clean Room",
-                "description": "Clean room before spring break trip",
-                "completeDate": "02/28/2020",
-                "complete": 0
+                "category": "home"
             }
 ```
 
