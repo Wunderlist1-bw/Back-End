@@ -87,7 +87,7 @@ router.post('/', TaskAuth, (req, res) => {
 // ADD NEW Category
 // ______________________ //
 
-router.post('/', TaskAuth, (req, res) => {
+router.post('/catagory', TaskAuth, (req, res) => {
     const newCategory = req.body;
 
     Task.addCategory(newCategory)
