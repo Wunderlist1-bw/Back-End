@@ -3,8 +3,7 @@ exports.seed = function (knex, Promise) {
         .then(function () {
             return knex('task_category').insert([
                 { task_id: 1, category_id: 1 },
-                { task_id: 1, category_id: 2 },
-                { task_id: 2, category_id: 2 }
+                { task_id: 1, category_id: 2 }
             ]);
         });
 };

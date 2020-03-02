@@ -39,13 +39,12 @@ Requires an authorization header with a JWT. it will return an array of objects 
   "task": [
             {
                 "id": 1,
-                "title": "Study for assessment",
-                "description": "Read over notes and tk to get ready for assessment",
-                "completeDate": "03/01/2020",
-                "category": "school",
+                "title": "Clean Room",
+                "description": "Clean room before spring break trip",
+                "completeDate": "02/28/2020",
                 "complete": 0,
-                "created_at": "2020-02-28 03:17:24",
-                "updated_at": "2020-02-28 03:17:24",
+                "created_at": "2020-03-01 20:55:14",
+                "updated_at": "2020-03-01 20:55:14",
                 "users_id": 1
             },
             {
@@ -53,7 +52,6 @@ Requires an authorization header with a JWT. it will return an array of objects 
                 "title": "Update Resume",
                 "description": "Add new skills to my resume",
                 "completeDate": null,
-                "category": "work",
                 "complete": 0,
                 "created_at": "2020-02-28 03:17:24",
                 "updated_at": "2020-02-28 03:17:24",
@@ -71,10 +69,10 @@ Requires an authorization header with a JWT. Expects an object with this format 
 
     "task": {
                 "id": 1,
+                "category": "school",
                 "title": "Study for assessment",
                 "description": "Read over notes and tk to get ready for assessment",
                 "completeDate": "03/01/2020",
-                "category": "school",
                 "complete": 0,
                 "created_at": "2020-02-28 03:17:24",
                 "updated_at": "2020-02-28 03:17:24",
@@ -87,17 +85,24 @@ Requires an authorization header with a JWT. Expects an object with this format 
 
 Requires an authorization header with a JWT. The object represents the recipe with the ID specified in the path:
 ```
-    "task": {
-                "id": 1,
-                "title": "Study for assessment",
-                "description": "Read over notes and tk to get ready for assessment",
-                "completeDate": "03/01/2020",
-                "category": "school",
-                "complete": 0,
-                "created_at": "2020-02-28 03:17:24",
-                "updated_at": "2020-02-28 03:17:24",
-                "users_id": 1
-            }
+    "task": [
+                {
+                    "id": 1,
+                    "category": "home",
+                    "title": "Clean Room",
+                    "description": "Clean room before spring break trip",
+                    "completeDate": "02/28/2020",
+                    "complete": 0
+                },
+                {
+                    "id": 1,
+                    "category": "work",
+                    "title": "Clean Room",
+                    "description": "Clean room before spring break trip",
+                    "completeDate": "02/28/2020",
+                    "complete": 0
+                }
+            ]
 ```        
 
 
@@ -107,14 +112,25 @@ Requires an authorization header with a JWT. Expects an object with this format 
 ```
     "task": {
                 "id": 1,
+                "category": "home",
                 "title": "Study for assessment",
                 "description": "Read over notes and tk to get ready for assessment",
                 "completeDate": "03/01/2020",
-                "category": "school",
                 "complete": 0,
-                "created_at": "2020-02-28 03:17:24",
-                "updated_at": "2020-02-28 03:17:24",
                 "users_id": 1
+            }
+```
+### /api/task/category/:id GET
+
+Requires an authorization header with a JWT. Expects an object with this format as the request body:
+```
+    "task": {
+                "id": 1,
+                "category": "home",
+                "title": "Clean Room",
+                "description": "Clean room before spring break trip",
+                "completeDate": "02/28/2020",
+                "complete": 0
             }
 ```
 
