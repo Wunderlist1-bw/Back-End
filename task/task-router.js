@@ -55,57 +55,64 @@ router.get('/category/:category_id', TaskAuth, (req, res) => {
 // GET TASK BY WITH CATEGORY
 // ______________________ //
 
-// router.get('/:id', TaskAuth, (req, res) => {
-//     const { id } = req.params
-
-//     Task.findById(id)
-//         .then(idTasks => {
-//             if (idTasks) {
-//                 Task.findById(id)
-//                     .then(Tasks => {
-//                         res.status(200).json(Tasks)
-//                     })
-//                     .catch(err => {
-//                         res.status(500).json({ message: 'you failed to get all', err });
-//                     });
-//             } else {
-//                 if (taskId) {
-//                     Task.findTaskCategories(id)
-//                         .then(task => {
-//                             res.status(200).json(task)
-//                         })
-//                         .catch(err => {
-//                             res.status(500).json({ message: 'you failed to get all', err });
-//                         });
-//                 }
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).json({ message: 'you failed to get the id', err });
-//         });
-// })
-
 router.get('/:id', TaskAuth, (req, res) => {
     const { id } = req.params
 
     Task.findById(id)
-        .then(taskId => {
-            if (taskId) {
-                Task.findTaskCategories(id)
-                    .then(task => {
-                        res.status(200).json(task)
+        .then(idTasks => {
+            if (idTasks) {
+                Task.findById(id)
+                    .then(Tasks => {
+                        res.status(200).json(Tasks)
                     })
                     .catch(err => {
                         res.status(500).json({ message: 'you failed to get all', err });
                     });
             } else {
-                res.status(404).json({ message: 'could not find task' })
+                if (taskId) {
+                    Task.findTaskCategories(id)
+                        .then(task => {
+                            res.status(200).json(task)
+                        })
+                        .catch(err => {
+                            res.status(500).json({ message: 'you failed to get all', err });
+                        });
+                }
             }
         })
         .catch(err => {
             res.status(500).json({ message: 'you failed to get the id', err });
         });
 })
+
+// router.get('/:id', TaskAuth, (req, res) => {
+//     const { id } = req.params
+
+//     Task.findById(id)
+//         .then(taskId => {
+//             if (taskId) {
+//                 Task.findTaskCategories(id)
+//                     .then(task => {
+//                         console.log("task", task[0].category)
+//                         if (task[0].category) {
+
+//                             res.status(200).json(task)
+//                         } else {
+//                             console.log("taskID", taskId)
+//                             res.status(200).json(taskId)
+//                         }
+//                     })
+//                     .catch(err => {
+//                         res.status(500).json({ message: 'you failed to get task', err });
+//                     });
+//             } else {
+//                 res.status(404).json({ message: 'could not find task' })
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json({ message: 'you failed to get the id', err });
+//         });
+// })
 
 
 // router.get('/:id', (req, res) => {
