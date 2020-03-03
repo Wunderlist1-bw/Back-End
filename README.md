@@ -116,6 +116,18 @@ Requires an authorization header with a JWT. Expects an object with this format 
                 "users_id": 1
             }
 ```
+<<<<<<< HEAD
+=======
+### /api/task/category POST
+
+Requires an authorization header with a JWT. Expects an object with this format as the request body:
+```
+    "task": {
+                "id": 1,
+                "category": "home"
+            }
+```
+>>>>>>> d48931c67cc99e86cbd127e9730639ac8d5a04be
 
 
 ### /api/task/:id DELETE
