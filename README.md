@@ -118,6 +118,7 @@ Requires an authorization header with a JWT. Expects an object with this format 
 ```
 
 
+
 ### /api/task/:id DELETE
 
 Requires an authorization header with a JWT. Deletes the selected recipe if it exists and is associated with the current user.
