@@ -144,7 +144,7 @@ router.post('/', TaskAuth, (req, res) => {
             res.status(201).json(NewTask)
         })
         .catch(err => {
-            res.status(500).json({ message: 'Failed to create new task', err })
+            res.status(500).json({ message: 'Failed to create new task', err: err.message })
         });
 })
 
