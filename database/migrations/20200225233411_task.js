@@ -5,7 +5,7 @@ exports.up = function (knex) {
         task.string('title', 128).notNullable();
         task.string('description', 225).notNullable();
         task.string('completeDate');
-        task.boolean('complete').notNullable().defaultTo(false);
+        task.boolean('complete').defaultTo(false);
         task.timestamp('created_at').defaultTo(knex.fn.now());
         task.timestamp('updated_at').defaultTo(knex.fn.now());
         task.integer('users_id')
