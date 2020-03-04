@@ -9,7 +9,6 @@ exports.up = function (knex) {
         task.timestamp('created_at').defaultTo(knex.fn.now());
         task.timestamp('updated_at').defaultTo(knex.fn.now());
         task.integer('users_id')
-            .notNullable()
             .unsigned()
             .references('users.id')
             .onUpdate('CASCADE')
