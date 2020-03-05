@@ -19,8 +19,13 @@ server.use('/api/task', taskRouter);
 //     res.send("It's Alive");
 // })
 
-server.get('/', function (req, res, next) {
-    res.json({ msg: 'This is CORS-enabled for all origins!' })
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
+server.get('/', function (req, res) {
+    res.json({ msg: 'Welcome to wunderlust api' })
 })
 
 module.exports = server;
