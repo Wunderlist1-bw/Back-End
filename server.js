@@ -8,8 +8,15 @@ const morgan = require('morgan')
 const authRouter = require('./auth/auth-router.js');
 const taskRouter = require('./task/task-router.js');
 
-const middleware = [express.json(), helmet(), cors(), morgan('dev')];
-server.use(middleware);
+// const middleware = [express.json(), helmet(), cors(), morgan('dev')];
+// server.use(middleware);
+
+server.use(express.json())
+server.use(helmet())
+server.use(cors({
+    credentials: true
+}))
+server.use(morgan('dev'))
 
 
 server.use('/api/auth', authRouter);
@@ -21,6 +28,8 @@ server.use('/api/task', taskRouter);
 
 server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     next();
 });
 
